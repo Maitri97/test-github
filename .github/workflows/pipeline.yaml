@@ -3,6 +3,12 @@ name: build and deploy
 on:
   push:
     branches: ["main"]
+  workflow_dispatch:
+    inputs:
+      message:
+        description: "give some input for the file"
+        required: true
+        default: "Hello Team"
   
 
 jobs:
@@ -17,7 +23,7 @@ jobs:
         run: chmod +x scripts/build.sh
             
       - name: run the script
-        run: ./scripts/build.sh
+        run: ./scripts/build.sh "${{ inputs.message }}"
 
       - name: display output
         run: cat output.txt
