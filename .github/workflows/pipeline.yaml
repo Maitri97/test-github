@@ -1,0 +1,23 @@
+name: build and deploy
+
+on:
+  push:
+    branches: ["main"]
+  
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v4
+
+      - name: executable (run script)
+        run: chmod +x scripts/build.sh
+            
+      - name: run the script
+        run: ./scripts/build.sh
+
+      - name: display output
+        run: cat output.txt
